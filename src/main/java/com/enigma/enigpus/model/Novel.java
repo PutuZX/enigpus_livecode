@@ -4,7 +4,7 @@ public class Novel extends Book {
     private String publisher;
     private String author;
 
-    Novel(String bookId, String title, String publisher, String yearOfPublish, String author){
+    public Novel(String bookId, String title, String publisher, String yearOfPublish, String author){
         super(bookId, title, yearOfPublish);
         this.publisher = publisher;
         this.author = author;
@@ -62,5 +62,14 @@ public class Novel extends Book {
     @Override
     public void setYearOfPublish(String yearOfPublish) {
         this.yearOfPublish = yearOfPublish;
+    }
+
+    public String toString(){
+        return String.format("%s,%s,%s,%s,%s", bookId, title, publisher, yearOfPublish, author);
+    }
+
+    public static Novel fromString(String str){
+        String[] parts = str.split(",");
+        return new Novel(parts[0], parts[1], parts[2], parts[3], parts[4]);
     }
 }

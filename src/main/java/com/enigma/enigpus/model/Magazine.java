@@ -3,7 +3,7 @@ package com.enigma.enigpus.model;
 public class Magazine extends Book{
     private String publishPeriod;
 
-    Magazine(String bookId, String title, String yearOfPublish, String publishPeriod){
+    public Magazine(String bookId, String title, String yearOfPublish, String publishPeriod){
         super(bookId, title, yearOfPublish);
         this.publishPeriod = publishPeriod;
     }
@@ -44,5 +44,14 @@ public class Magazine extends Book{
     @Override
     public void setYearOfPublish(String yearOfPublish) {
         this.yearOfPublish = yearOfPublish;
+    }
+
+    public String toString(){
+        return String.format("%s %s %s %s", bookId, title, yearOfPublish, publishPeriod);
+    }
+
+    public static Magazine fromString(String str){
+        String[] parts = str.split(",");
+        return new Magazine(parts[0], parts[1], parts[2], parts[3]);
     }
 }
