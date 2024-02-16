@@ -4,10 +4,14 @@ package com.enigma.enigpus;
  * Hello world!
  *
  */
+
+import com.enigma.enigpus.view.*;;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        UI ui = new UI();
+        ui.menu();
     }
 }
