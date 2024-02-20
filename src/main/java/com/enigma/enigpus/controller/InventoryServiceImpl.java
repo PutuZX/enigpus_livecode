@@ -17,37 +17,27 @@ public class InventoryServiceImpl implements InventoryService {
         switch (input) {
             case 1:
                 addBook(ui.bookTypeUI());
+                ui.menu();
                 break;
             case 2:
                 searchBookByTitle(ui.bookTypeUI());
+                ui.menu();
                 break;
             case 3:
                 searchBookById(ui.bookTypeUI());
+                ui.menu();
                 break;
             case 4:
                 deleteBook(ui.bookTypeUI());
+                ui.menu();
                 break;
             case 5:
                 getAllBook(ui.bookTypeUI());
+                ui.menu();
                 break;
-            // case 2:
-            //     ui.updateProductUI();
-            //     break;
-            // case 3:
-            //     ui.removeProductUI();
-            //     break;
-            // case 4:
-            //     ui.viewProductUI();
-            //     break;
-            // case 5:
-            //     ui.findProductUI();
-            //     break;
-            // case 6:
-            //     System.out.println(ui.getQuit());
-            //     break;
-            // default:
-            //     System.out.println(ui.getInvalidService());
-            //     break;
+            default:
+                ui.quitUI();
+                break;
         }
     }
 

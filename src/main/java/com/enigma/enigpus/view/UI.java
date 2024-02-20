@@ -29,6 +29,7 @@ public class UI {
         System.out.println("3.Search Book by Id");
         System.out.println("4.Delete Book");
         System.out.println("5.Display All Book");
+        System.out.println("6.Quit");
         System.out.print("Input: ");
         int inputValue = input.nextInt();
         service.serviceController(inputValue);
@@ -160,5 +161,11 @@ public class UI {
         input.nextLine();
         String novelID = input.nextLine();
         return novelID;
+    }
+    
+    public void quitUI(){
+        System.out.println("------------------------");
+        System.out.println("Thank you for using our service!");
+        System.out.println("------------------------");
     }
 }
