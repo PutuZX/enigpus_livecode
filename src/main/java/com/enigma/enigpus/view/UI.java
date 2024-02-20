@@ -74,12 +74,12 @@ public class UI {
     public void addMagazine(){
         Format format = new Format();
         System.out.println("------------------------");
-        System.out.println("Adding Novel Page");
+        System.out.println("Adding Magazine Page");
         System.out.println("------------------------");
         System.out.print("Input the book's title: ");
         input.nextLine();
         String title = input.nextLine();
-        System.out.println("Input published period: ");
+        System.out.print("Input published period: ");
         String publishedPeriod = input.nextLine();
         System.out.print("Input the published year: ");
         String year = input.nextLine();
@@ -94,5 +94,71 @@ public class UI {
         System.out.print("Input: ");
         int inputValue = validator.intValidator(input);
         return inputValue;
+    }
+
+    public String novelTitleUI(){
+        System.out.println("------------------------");
+        System.out.println("Search Novel by Title");
+        System.out.println("------------------------");
+        System.out.print("Input the novel title: ");
+        input.nextLine();
+        String novelTitle = input.nextLine();
+        return novelTitle;
+    }
+
+    public String magzTitleUI(){
+        System.out.println("------------------------");
+        System.out.println("Search Magazine by Title");
+        System.out.println("------------------------");
+        System.out.print("Input the magazine title: ");
+        input.nextLine();
+        String magazineTitle = input.nextLine();
+        return magazineTitle;
+    }
+
+    public String novelIDUI(){
+        System.out.println("------------------------");
+        System.out.println("Search Novel by ID");
+        System.out.println("------------------------");
+        System.out.print("Input the novel ID: ");
+        input.nextLine();
+        String novelID = input.nextLine();
+        return novelID;
+    }
+
+    public String magzIDUI(){
+        System.out.println("------------------------");
+        System.out.println("Search Magazine by ID");
+        System.out.println("------------------------");
+        System.out.print("Input the magazine ID: ");
+        input.nextLine();
+        String magazineID = input.nextLine();
+        return magazineID;
+    }
+
+    public String magzDelete(){
+        System.out.println("------------------------");
+        System.out.println("Delete Magazine by ID");
+        System.out.println("------------------------");
+        for(Magazine magazine : magazines.getMagazines()){
+            System.out.println(magazine);
+        }
+        System.out.print("Select magazine by ID to delete: ");
+        input.nextLine();
+        String magazineID = input.nextLine();
+        return magazineID;
+    }
+
+    public String novelDelete(){
+        System.out.println("------------------------");
+        System.out.println("Delete Magazine by ID");
+        System.out.println("------------------------");
+        for(Novel novel : novels.getNovels()){
+            System.out.println(novel);
+        }
+        System.out.print("Select Novel by ID to delete: ");
+        input.nextLine();
+        String novelID = input.nextLine();
+        return novelID;
     }
 }

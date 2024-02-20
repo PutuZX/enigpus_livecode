@@ -22,14 +22,9 @@ public class dataCollection {
             while(books.hasNextLine()){
                 String data = books.nextLine();
                 if(data.charAt(5) == 'A'){
-                    String data1 = data;
-                    System.out.println(data1);
                     Novel novel = Novel.fromString(data);
                     novels.addNovel(novel);
                 } else{
-                    System.out.println("it's run!");
-                    String data2 = data;
-                    System.out.println(data2);
                     Magazine magazine = Magazine.fromString(data);
                     magazines.addMagazine(magazine);
                 }

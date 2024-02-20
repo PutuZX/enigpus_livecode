@@ -47,7 +47,7 @@ public class Magazine extends Book{
     }
 
     public String toString(){
-        return String.format("%s %s %s %s", bookId, title, yearOfPublish, publishPeriod);
+        return String.format("%s,%s,%s,%s", bookId, title, yearOfPublish, publishPeriod);
     }
 
     public static Magazine fromString(String str){

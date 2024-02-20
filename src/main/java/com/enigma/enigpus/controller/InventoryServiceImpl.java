@@ -1,9 +1,13 @@
 package com.enigma.enigpus.controller;
 
-import com.enigma.enigpus.model.*;
-import com.enigma.enigpus.view.UI;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import com.enigma.enigpus.model.Magazine;
+import com.enigma.enigpus.model.MagzController;
+import com.enigma.enigpus.model.Novel;
+import com.enigma.enigpus.model.NovelController;
+import com.enigma.enigpus.view.UI;
 
 public class InventoryServiceImpl implements InventoryService {
     UI ui = new UI();
@@ -13,6 +17,15 @@ public class InventoryServiceImpl implements InventoryService {
         switch (input) {
             case 1:
                 addBook(ui.bookTypeUI());
+                break;
+            case 2:
+                searchBookByTitle(ui.bookTypeUI());
+                break;
+            case 3:
+                searchBookById(ui.bookTypeUI());
+                break;
+            case 4:
+                deleteBook(ui.bookTypeUI());
                 break;
             case 5:
                 getAllBook(ui.bookTypeUI());
@@ -42,20 +55,14 @@ public class InventoryServiceImpl implements InventoryService {
     public void addBook(int bookChoice){
         if(bookChoice == 1){
             ui.addNovel();
-            System.out.println("magazine aded");
         } else{
             ui.addMagazine();
-            System.out.println("magazine addded");
         }
         try (FileWriter writer = new FileWriter("novel.txt")){
-            System.out.println(novels.getNovels());
-            System.out.println(magazines.getMagazines());
             for(Novel novel : novels.getNovels()){
-                System.out.println("Novel added");
                 writer.write(novel + System.lineSeparator());
             }
             for(Magazine magazine : magazines.getMagazines()){
-                System.out.println("magazine added");
                 writer.write(magazine + System.lineSeparator());
             }
         } catch (IOException e){
@@ -64,18 +71,91 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public void searchBookByTitle(){
-
+    public void searchBookByTitle(int bookChoice){
+        boolean found = false;
+        if(bookChoice == 1){
+            String novelTitle = ui.novelTitleUI();
+            for(Novel novel : novels.getNovels()){
+                if(novelTitle.equals(novel.getTitle())){
+                    System.out.println(novel);
+                    found = true;
+                }
+            }
+        } else{
+            String magzTitle = ui.magzTitleUI();
+            for(Magazine magazine : magazines.getMagazines()){
+                if(magzTitle.equals(magazine.getTitle())){
+                    System.out.println(magazine);
+                    found = true;
+                }
+            }
+        }
+        if(!found){
+            System.out.println("Not found!");
+        }
     }
 
     @Override
-    public void searchBookById(){
-
+    public void searchBookById(int bookChoice){
+        boolean found = false;
+        if(bookChoice == 1){
+            String novelID = ui.novelIDUI();
+            for(Novel novel : novels.getNovels()){
+                if(novelID.equals(novel.getBookId())){
+                    System.out.println(novel);
+                    found = true;
+                }
+            }
+        } else{
+            String magzID = ui.magzIDUI();
+            for(Magazine magazine : magazines.getMagazines()){
+                if(magzID.equals(magazine.getBookId())){
+                    System.out.println(magazine);
+                    found = true;
+                }
+            }
+        }
+        if(!found){
+            System.out.println("Not found!");
+        }
     }
 
     @Override
-    public void deleteBook(){
+    public void deleteBook(int bookChoice){
+        boolean found = false;
+        if(bookChoice == 1){
+            String novelID = ui.novelDelete();
+            for(Novel novel : novels.getNovels()){
+                if(novelID.equals(novel.getBookId())){
+                    System.out.println(novel);
+                    novels.removeNovel(novel);
+                    found = true;
+                }
+            }
+        } else{
+            String magzID = ui.magzDelete();
+            for(Magazine magazine : magazines.getMagazines()){
+                if(magzID.equals(magazine.getBookId())){
+                    System.out.println(magazine);
+                    magazines.removeMagazine(magazine);
+                    found = true;
+                }
+            }
+        }
+        if(!found){
+            System.out.println("Not found!");
+        }
 
+        try (FileWriter writer = new FileWriter("novel.txt")){
+            for(Novel novel : novels.getNovels()){
+                writer.write(novel + System.lineSeparator());
+            }
+            for(Magazine magazine : magazines.getMagazines()){
+                writer.write(magazine + System.lineSeparator());
+            }
+        } catch (IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     @Override
